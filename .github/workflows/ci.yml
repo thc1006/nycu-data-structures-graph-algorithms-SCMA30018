@@ -1,0 +1,144 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+        
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential gcc clang make valgrind
+        
+    - name: Set compiler
+      run: |
+        if [ "${{ matrix.compiler }}" = "clang" ]; then
+          echo "CC=clang" >> $GITHUB_ENV
+        else
+          echo "CC=gcc" >> $GITHUB_ENV
+        fi
+        
+    - name: Show compiler version
+      run: |
+        $CC --version
+        make --version
+        
+    - name: Build project
+      run: |
+        make clean
+        make all
+        
+    - name: Run demo
+      run: |
+        make run
+        
+    - name: Run unit tests
+      run: |
+        make test
+        
+    - name: Run benchmarks
+      run: |
+        make benchmark
+        
+    - name: Test with different optimization levels
+      run: |
+        make clean
+        CFLAGS="-Wall -Wextra -std=c99 -g -O0" make all
+        make test
+        make clean
+        CFLAGS="-Wall -Wextra -std=c99 -g -O3" make all
+        make test
+        
+    - name: Memory leak test (if valgrind available)
+      run: |
+        if command -v valgrind &> /dev/null; then
+          valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./bin/test_date
+        else
+          echo "Valgrind not available, skipping memory leak test"
+        fi
+        
+    - name: Static analysis (if cppcheck available)
+      run: |
+        if command -v cppcheck &> /dev/null; then
+          cppcheck --error-exitcode=1 --enable=warning,style,performance,portability src/
+        else
+          echo "cppcheck not available, skipping static analysis"
+        fi
+        
+    - name: Check code formatting (if clang-format available)
+      run: |
+        if command -v clang-format &> /dev/null; then
+          find src/ tests/ benchmarks/ -name "*.c" -o -name "*.h" | xargs clang-format --dry-run --Werror
+        else
+          echo "clang-format not available, skipping format check"
+        fi
+      continue-on-error: true
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts-${{ matrix.compiler }}
+        path: |
+          bin/
+          build/
+        retention-days: 7
+        
+  documentation:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Check documentation
+      run: |
+        echo "Checking documentation files..."
+        test -f README.md
+        test -f docs/API.md
+        test -f LICENSE
+        echo "Documentation check passed!"
+        
+    - name: Validate example files
+      run: |
+        echo "Checking example files..."
+        test -f examples/input.txt
+        test -f examples/expected_output.txt
+        echo "Example files check passed!"
+        
+  cross-platform:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-20.04]
+        
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install build tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential
+        
+    - name: Build and test
+      run: |
+        make all
+        make test
+        
+    - name: Check binary compatibility
+      run: |
+        file bin/date_demo
+        ldd bin/date_demo || true
