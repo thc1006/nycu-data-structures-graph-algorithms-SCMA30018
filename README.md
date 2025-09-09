@@ -30,11 +30,18 @@ This repository contains implementations, assignments, and performance analysis 
 │   └── test_date.c        # Date type tests | 日期型別測試
 ├── benchmarks/             # Performance tests | 效能測試
 │   └── bench_date.c       # Date benchmarks | 日期效能測試
-├── docs/                   # Documentation | 文件
-│   └── API.md             # API documentation | API 文件
-├── examples/               # Sample I/O | 範例輸入輸出
-│   ├── input.txt          # Sample input | 範例輸入
-│   └── expected_output.txt # Expected output | 預期輸出
+├── textbook/               # Course materials | 課程教材  
+│   ├── API.md             # API documentation | API 文件
+│   ├── outline.pdf        # Course outline | 課程大綱
+│   └── p1.pdf             # Chapter 1 materials | 第一章教材
+├── examples/               # C programming examples | C程式範例
+│   ├── 0a-gcd.c           # GCD algorithm | 最大公因數演算法
+│   ├── 0b-div.c           # Division operations | 除法運算
+│   ├── 0g-pointer.c       # Pointer manipulation | 指標操作
+│   ├── 0h-matrix.c        # Matrix operations | 矩陣運算
+│   ├── 0i-Stack.C         # Stack implementation (C++) | 堆疊實作 (C++)
+│   ├── 0j-stack.c         # Stack implementation (C) | 堆疊實作 (C)
+│   └── ... more examples  # Additional examples | 更多範例
 ├── .github/workflows/      # CI/CD pipeline | 持續整合
 └── Makefile               # Build system | 建置系統
 ```
