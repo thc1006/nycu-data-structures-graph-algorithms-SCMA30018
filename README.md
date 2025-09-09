@@ -1,8 +1,9 @@
 # NYCU Data Structures & Graph Algorithms (SCMA30018)
 
-[![Build and Test](https://github.com/thc1006/nycu-data-structures-graph-algorithms-SCMA30018/actions/workflows/ci.yml/badge.svg)](https://github.com/thc1006/nycu-data-structures-graph-algorithms-SCMA30018/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Language](https://img.shields.io/badge/Language-C-blue.svg)](https://en.wikipedia.org/wiki/C_(programming_language))
+
+> 由於官教授的伺服器沒有安全憑證 "https" 導致我部份的裝置無法順利存取老師的網誌，同時考量資訊安全和 https 將會是未來趨勢，如不支援未來將會有更多瀏覽器無法存取 "http" 類型之網頁，故暫時將老師的範例暫時放置於此，裨益作業撰寫順利。
 
 ## 🏫 Course Information | 課程資訊
 
@@ -14,91 +15,6 @@
 - **授課教師**: 國立陽明交通大學 應用數學系 官大智 教授
 - **學分 Credits**: 3  
 - **語言 Language**: C/C++  
-
-## 📋 Repository Contents | 倉庫內容
-
-This repository contains implementations, assignments, and performance analysis for data structures and graph algorithms coursework, featuring:
-
-本倉庫包含資料結構與圖論演算法課程的實作、作業與效能分析，特色包括：
-
-### 🏗️ Project Structure | 專案結構
-```
-├── src/                    # Source code | 源碼
-│   ├── date.h             # Date type header | 日期型別標頭檔
-│   ├── date.c             # Date implementation | 日期實作
-│   └── main.c             # Demo program | 示範程式
-├── tests/                  # Unit tests | 單元測試
-│   └── test_date.c        # Date type tests | 日期型別測試
-├── benchmarks/             # Performance tests | 效能測試
-│   └── bench_date.c       # Date benchmarks | 日期效能測試
-├── textbook/               # Course materials | 課程教材  
-│   ├── API.md             # API documentation | API 文件
-│   ├── outline.pdf        # Course outline | 課程大綱
-│   └── p1.pdf             # Chapter 1 materials | 第一章教材
-├── examples/               # C programming examples | C程式範例
-│   ├── 0a-gcd.c           # GCD algorithm | 最大公因數演算法
-│   ├── 0b-div.c           # Division operations | 除法運算
-│   ├── 0g-pointer.c       # Pointer manipulation | 指標操作
-│   ├── 0h-matrix.c        # Matrix operations | 矩陣運算
-│   ├── 0i-Stack.C         # Stack implementation (C++) | 堆疊實作 (C++)
-│   ├── 0j-stack.c         # Stack implementation (C) | 堆疊實作 (C)
-│   └── ... more examples  # Additional examples | 更多範例
-├── .github/workflows/      # CI/CD pipeline | 持續整合
-└── Makefile               # Build system | 建置系統
-```
-
-## 🚀 Quick Start | 快速開始
-
-### Prerequisites | 前置需求
-- GCC or Clang compiler
-- Make build system
-- Linux/Unix environment (Ubuntu recommended)
-
-### Build and Run | 建置與執行
-```bash
-# Clone the repository | 複製倉庫
-git clone https://github.com/thc1006/nycu-data-structures-graph-algorithms-SCMA30018.git
-cd nycu-data-structures-graph-algorithms-SCMA30018
-
-# Build all components | 建置所有元件
-make all
-
-# Run demo program | 執行示範程式
-make run
-
-# Run unit tests | 執行單元測試
-make test
-
-# Run benchmarks | 執行效能測試
-make benchmark
-
-# Clean build files | 清理建置檔案
-make clean
-```
-
-## 🔧 Development | 開發
-
-### Available Commands | 可用指令
-```bash
-make help          # Show all available commands | 顯示所有可用指令
-make all           # Build main executable | 建置主要執行檔
-make test          # Build and run tests | 建置並執行測試
-make benchmark     # Build and run benchmarks | 建置並執行效能測試
-make run           # Build and run demo | 建置並執行示範
-make clean         # Remove build files | 移除建置檔案
-```
-
-### Testing | 測試
-- **Unit Tests**: 42 comprehensive test cases | 42個全面測試案例
-- **Memory Testing**: Valgrind integration | Valgrind 整合
-- **Performance Testing**: Detailed benchmarks | 詳細效能測試
-- **CI/CD**: Automated testing on Ubuntu | Ubuntu 自動化測試
-
-## 📖 Documentation | 文件
-
-- **[API Documentation](docs/API.md)**: Complete function reference | 完整函數參考
-- **[Examples](examples/)**: Sample input/output files | 範例輸入/輸出檔案
-- **Code Comments**: Inline documentation | 內聯文件註解
 
 ## 🤝 Contributing | 貢獻
 
