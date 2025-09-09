@@ -68,64 +68,6 @@ make benchmark
 make clean
 ```
 
-## 📊 HW1: Date Data Type | 作業一：日期資料型別
-
-### Features | 功能特色
-
-✅ **Complete Date Operations | 完整日期操作**
-- Date creation and validation | 日期創建與驗證
-- Leap year calculation | 閏年計算
-- Date arithmetic (add/subtract days) | 日期運算（加減天數）
-- Date comparison and difference | 日期比較與差值計算
-- String conversion (ISO 8601 format) | 字串轉換（ISO 8601 格式）
-
-✅ **Robust Validation | 穩健驗證**
-- Calendar rule compliance | 日曆規則遵循
-- Leap year handling | 閏年處理
-- Month/day boundary checking | 月份/日期邊界檢查
-- Input sanitization | 輸入淨化
-
-✅ **Performance Optimized | 效能最佳化**
-- Lightweight structure (12 bytes) | 輕量級結構（12 位元組）
-- Efficient algorithms | 高效演算法
-- Comprehensive benchmarks | 全面效能測試
-
-✅ **Production Ready | 生產就緒**
-- 100% test coverage | 100% 測試覆蓋率
-- Memory leak free | 無記憶體洩漏
-- Thread-safe operations | 執行緒安全操作
-- Extensive documentation | 詳盡文件
-
-### Performance Metrics | 效能指標
-
-| Operation | Performance | 操作 | 效能 |
-|-----------|-------------|------|------|
-| Date Creation | ~153M ops/sec | 日期創建 | ~1.53億次/秒 |
-| Validation | ~480M ops/sec | 驗證 | ~4.8億次/秒 |
-| Comparison | ~393M ops/sec | 比較 | ~3.93億次/秒 |
-| Arithmetic | ~74M ops/sec | 運算 | ~7400萬次/秒 |
-
-### Code Example | 程式碼範例
-
-```c
-#include "date.h"
-
-// Create and validate a date | 創建並驗證日期
-Date birthday = date_create(2024, 9, 9);
-if (date_is_valid(&birthday)) {
-    printf("Valid date: ");
-    date_print(&birthday);  // Output: 2024-09-09
-}
-
-// Date arithmetic | 日期運算
-Date future = date_add_days(&birthday, 100);
-int days_diff = date_diff_days(&birthday, &future);  // 100
-
-// String conversion | 字串轉換
-char date_str[12];
-date_to_string(&birthday, date_str);  // "2024-09-09"
-```
-
 ## 🔧 Development | 開發
 
 ### Available Commands | 可用指令
@@ -174,10 +116,9 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 **程式設計**: C語言, 資料結構, 演算法, 圖論, 日期處理, 效能最佳化
 
 **Education**: NYCU, Computer Science, Programming Assignment, Unit Testing, Benchmarking  
-**教育**: 陽明交通大學, 資訊工程, 程式作業, 單元測試, 效能評測
+**教育**: 陽明交通大學, ,應用數學, 資訊工程, 程式作業, 單元測試, 效能評測
 
 **Technical**: ISO 8601, Leap Year, Calendar Algorithm, Memory Management, CI/CD  
-**技術**: ISO 8601, 閏年, 日曆演算法, 記憶體管理, 持續整合
 
 ---
 
