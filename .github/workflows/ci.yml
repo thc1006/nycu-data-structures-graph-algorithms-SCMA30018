@@ -106,7 +106,7 @@ jobs:
       run: |
         echo "Checking documentation files..."
         test -f README.md
-        test -f docs/API.md
+        test -f textbook/API.md
         test -f LICENSE
         echo "Documentation check passed!"
         
@@ -115,6 +115,12 @@ jobs:
         echo "Checking example files..."
         test -f examples/input.txt
         test -f examples/expected_output.txt
+        # Check for C programming examples
+        test -f examples/0a-gcd.c
+        test -f examples/0g-pointer.c
+        test -f examples/0h-matrix.c
+        test -f examples/0i-Stack.C
+        test -f examples/0j-stack.c
         echo "Example files check passed!"
         
   cross-platform:
