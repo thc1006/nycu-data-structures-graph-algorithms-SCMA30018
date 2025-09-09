@@ -43,9 +43,3 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 **教育**: 陽明交通大學, ,應用數學, 資訊工程, 程式作業, 單元測試, 效能評測
 
 **Technical**: ISO 8601, Leap Year, Calendar Algorithm, Memory Management, CI/CD  
-
----
-
-**National Yang Ming Chiao Tung University | 國立陽明交通大學**  
-**Department of Computer Science | 資訊工程學系**  
-**Course: Data Structures & Graph Algorithms | 課程：資料結構與圖論演算法**
