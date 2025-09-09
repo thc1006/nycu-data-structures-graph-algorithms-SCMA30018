@@ -10,7 +10,8 @@
 **NYCU 114-1 Data Structures & Graph Algorithms**
 
 - **課程代碼 Course Code**: 536715  
-- **永久課號 Permanent Code**: SCMA30018  
+- **永久課號 Permanent Code**: SCMA30018
+- **授課教師**: 國立陽明交通大學 應用數學系 官大智 教授
 - **學分 Credits**: 3  
 - **語言 Language**: C/C++  
 
