@@ -18,21 +18,33 @@
         }
         /* 設定列印時的樣式 */
         @media print {
-            /* 隱藏所有不需要列印的元素 */
-            body > *:not(#print-section) {
-                display: none;
+            /* 透過 visibility 屬性來控制，避免影響版面配置 */
+            /* 預設隱藏所有元素 */
+            body * {
+                visibility: hidden;
             }
-            /* 讓預覽區塊充滿整個頁面 */
-            #print-section, #cover-preview {
-                display: block;
+            
+            /* 僅顯示列印區塊 (#print-section) 及其所有子元素 */
+            #print-section, #print-section * {
+                visibility: visible;
+            }
+            
+            /* 將列印區塊定位到頁面的左上角，使其脫離原始文檔流 */
+            #print-section {
+                position: absolute;
+                left: 0;
+                top: 0;
                 width: 100%;
-                height: 100vh;
-                margin: 0;
-                padding: 0;
-                border: none;
-                box-shadow: none;
             }
-            /* 確保邊距和邊框在列印時被重置 */
+
+            /* 確保預覽框在列印時沒有多餘的樣式 */
+            #cover-preview {
+                box-shadow: none;
+                border: none;
+                margin: 0;
+            }
+            
+            /* 設定列印頁面的邊距和尺寸 */
             @page {
                 margin: 1in;
                 size: A4;
