@@ -1,45 +1,173 @@
-# NYCU Data Structures & Graph Algorithms (SCMA30018)
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作業報告封面產生器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 使用 Noto Serif TC 字體來模擬報告的正式感 */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        #cover-preview {
+            font-family: 'Noto Serif TC', serif;
+        }
+        /* 設定列印時的樣式 */
+        @media print {
+            /* 隱藏所有不需要列印的元素 */
+            body > *:not(#print-section) {
+                display: none;
+            }
+            /* 讓預覽區塊充滿整個頁面 */
+            #print-section, #cover-preview {
+                display: block;
+                width: 100%;
+                height: 100vh;
+                margin: 0;
+                padding: 0;
+                border: none;
+                box-shadow: none;
+            }
+            /* 確保邊距和邊框在列印時被重置 */
+            @page {
+                margin: 1in;
+                size: A4;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Language](https://img.shields.io/badge/Language-C-blue.svg)](https://en.wikipedia.org/wiki/C_(programming_language))
+    <div class="container mx-auto p-4 lg:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl lg:text-4xl font-bold text-gray-900">作業報告封面產生器</h1>
+            <p class="text-gray-600 mt-2">輕鬆製作符合教授要求的報告封面</p>
+        </header>
 
-> 由於官教授的伺服器沒有安全憑證 "https" 導致我部份的裝置無法順利存取老師的網誌，同時考量資訊安全和 https 將會是未來趨勢，如不支援未來將會有更多瀏覽器無法存取 "http" 類型之網頁，故暫時將老師的範例暫時放置於此，裨益作業撰寫順利。
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- 左側：輸入表單 -->
+            <div class="lg:w-1/3 bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 border-b pb-3">封面資料</h2>
+                <form id="cover-form" class="space-y-4">
+                    <div>
+                        <label for="course-name" class="block text-sm font-medium text-gray-700">課程名稱</label>
+                        <input type="text" id="course-name" value="資料結構與圖論演算法" class="mt-1 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label for="assignment-title" class="block text-sm font-medium text-gray-700">作業標題</label>
+                        <input type="text" id="assignment-title" value="作業1: Define New Data Type (date)" class="mt-1 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label for="student-name" class="block text-sm font-medium text-gray-700">學生姓名</label>
+                        <input type="text" id="student-name" value="蔡秀吉" class="mt-1 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label for="professor-name" class="block text-sm font-medium text-gray-700">授課教授</label>
+                        <input type="text" id="professor-name" value="官大智" class="mt-1 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </div>
+                     <div>
+                        <label for="date" class="block text-sm font-medium text-gray-700">繳交日期</label>
+                        <input type="text" id="date" class="mt-1 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </div>
+                    <button type="button" onclick="window.print()" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300">
+                        列印封面
+                    </button>
+                </form>
+            </div>
 
-## 🏫 Course Information | 課程資訊
+            <!-- 右側：封面預覽 -->
+            <div id="print-section" class="lg:w-2/3">
+                <div id="cover-preview" class="bg-white w-full aspect-[210/297] p-16 lg:p-24 shadow-lg rounded-lg border border-gray-200 flex flex-col justify-between text-center">
+                    <!-- 頂部：學校與系所 -->
+                    <div class="space-y-4">
+                        <p id="preview-university" class="text-4xl tracking-widest font-bold">國立陽明交通大學</p>
+                        <p id="preview-department" class="text-3xl tracking-widest">應用數學系</p>
+                    </div>
 
-**國立陽明交通大學 114-1「資料結構與圖論演算法」**  
-**NYCU 114-1 Data Structures & Graph Algorithms**
+                    <!-- 中間：課程與作業標題 -->
+                    <div class="space-y-5">
+                        <p id="preview-course-name" class="text-3xl lg:text-4xl tracking-wider"></p>
+                        <p id="preview-assignment-title" class="text-2xl lg:text-3xl"></p>
+                    </div>
 
-- **課程代碼 Course Code**: 536715  
-- **永久課號 Permanent Code**: SCMA30018
-- **授課教師**: 國立陽明交通大學 應用數學系 官大智 教授
-- **學分 Credits**: 3  
-- **語言 Language**: C/C++  
+                    <!-- 底部：學生與教授資訊 -->
+                    <div class="space-y-4 text-2xl tracking-wider">
+                        <p id="preview-student-name"></p>
+                        <p id="preview-professor-name"></p>
+                    </div>
+                    
+                    <!-- 最底部：日期 -->
+                    <div>
+                        <p id="preview-date" class="text-2xl tracking-widest"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>由 <strong>秀吉的肝</strong> 冠名贊助撥出。</p>
+        </footer>
+    </div>
 
-## 🤝 Contributing | 貢獻
+    <script>
+        // DOM 元素對應
+        const inputs = {
+            courseName: document.getElementById('course-name'),
+            assignmentTitle: document.getElementById('assignment-title'),
+            studentName: document.getElementById('student-name'),
+            professorName: document.getElementById('professor-name'),
+            date: document.getElementById('date'),
+        };
 
-This repository is for educational purposes. For course-related submissions:
+        const previews = {
+            courseName: document.getElementById('preview-course-name'),
+            assignmentTitle: document.getElementById('preview-assignment-title'),
+            studentName: document.getElementById('preview-student-name'),
+            professorName: document.getElementById('preview-professor-name'),
+            date: document.getElementById('preview-date'),
+        };
 
-本倉庫用於教育目的。課程相關提交：
+        // 將西元年轉換為民國年
+        function getROCDateString() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            
+            const rocYear = year - 1911;
+            
+            return `中華民國 ${rocYear}年${month}月${day}日`;
+        }
+        
+        // 更新預覽內容的函式
+        function updatePreview() {
+            previews.courseName.textContent = inputs.courseName.value;
+            previews.assignmentTitle.textContent = inputs.assignmentTitle.value;
+            previews.studentName.textContent = `學生姓名：${inputs.studentName.value}`;
+            previews.professorName.textContent = `授課教授：${inputs.professorName.value} 教授`;
+            previews.date.textContent = inputs.date.value;
+        }
 
-1. Fork the repository | 分叉倉庫
-2. Create feature branch | 創建功能分支
-3. Follow coding standards | 遵循編碼標準
-4. Add comprehensive tests | 添加全面測試
-5. Submit pull request | 提交拉取請求
+        // 監聽所有輸入框的 'input' 事件
+        Object.values(inputs).forEach(input => {
+            input.addEventListener('input', updatePreview);
+        });
 
-## 📄 License | 授權
+        // 頁面載入時的初始化
+        function initialize() {
+            // 自動填入今天的日期（民國年格式）
+            inputs.date.value = getROCDateString();
+            // 首次載入時更新一次預覽
+            updatePreview();
+        }
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+        // 等待DOM載入完成後執行
+        document.addEventListener('DOMContentLoaded', initialize);
+    </script>
+</body>
+</html>
 
-本專案採用 Apache License 2.0 授權 - 詳見 [LICENSE](LICENSE) 檔案。
-
-## 🏷️ Keywords | 關鍵字
-
-**Programming**: C, Data Structures, Algorithms, Graph Theory, Date Handling, Performance Optimization  
-**程式設計**: C語言, 資料結構, 演算法, 圖論, 日期處理, 效能最佳化
-
-**Education**: NYCU, Computer Science, Programming Assignment, Unit Testing, Benchmarking  
-**教育**: 陽明交通大學, ,應用數學, 資訊工程, 程式作業, 單元測試, 效能評測
-
-**Technical**: ISO 8601, Leap Year, Calendar Algorithm, Memory Management, CI/CD  
