@@ -1,6 +1,7 @@
 // 迷宮最短路徑尋找
 // 使用 BFS 演算法找出從起點 s 到終點 t 的最短路徑
-// author: [Your Name]
+// 作者：蔡秀吉 (H. C. Tsai)
+// 電子信箱：hctsai@linux
 // date: 2025/10/05
 
 #include <stdio.h>
